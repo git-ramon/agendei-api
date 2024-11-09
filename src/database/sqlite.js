@@ -5,37 +5,28 @@ dotenv.config();
 
 console.log('Tentando conectar ao MySQL...');
 
-const host = process.env.MYSQLHOST || "localhost"; // Valor padrão
-const port = process.env.MYSQLPORT || 3306; // Valor padrão
-const user = process.env.MYSQLUSER || "root"; // Valor padrão
-const password = process.env.MYSQLROOTPASSWORD || "rootpassword"; // Valor padrão
-const database = process.env.MYSQLDATABASE || "database"; // Valor padrão
+const host = process.env.MYSQLHOST || "localhost";
+const port = process.env.MYSQLPORT || 3306;
+const user = process.env.MYSQLUSER || "root";
+const password = process.env.MYSQLROOTPASSWORD || "rootpassword";
+const database = process.env.MYSQLDATABASE || "database";
 
-const db = mysql.createConnection({
+// Criando o pool de conexões
+const pool = mysql.createPool({
     host,
     port,
     user,
     password,
     database,
+    waitForConnections: true,
+    connectionLimit: 10,  // Número máximo de conexões simultâneas
+    queueLimit: 0         // Limite de consultas aguardando uma conexão
 });
 
-db.connect((err) => {
-    if (err) {
-        console.error('Erro ao conectar com o MySQL: ', err);
-    } else {
-        console.log('Conectado ao MySQL!');
-    }
-});
-
-// Função para realizar a consulta, com verificação do estado da conexão
-async function runQuery(queryString) {
-    if (db.state === 'disconnected') {
-        console.log('Reconectando ao MySQL...');
-        db.connect();
-    }
-
+// Função para realizar consultas utilizando o pool
+async function runQuery(queryString, params = []) {
     return new Promise((resolve, reject) => {
-        db.execute(queryString, (err, results) => {
+        pool.execute(queryString, params, (err, results) => {
             if (err) {
                 reject(err);
             } else {
@@ -45,11 +36,10 @@ async function runQuery(queryString) {
     });
 }
 
-
-// Função para executar consultas
+// Função para executar uma consulta
 function query(command, params = []) {
     return new Promise((resolve, reject) => {
-        db.execute(command, params, (err, results) => {
+        pool.execute(command, params, (err, results) => {
             if (err) {
                 reject(err);
             } else {
@@ -59,7 +49,8 @@ function query(command, params = []) {
     });
 }
 
-export { query, runQuery, db };
+export { query, runQuery, pool };
+
 
 
 
