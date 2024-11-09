@@ -1,4 +1,14 @@
 import { query } from "../database/sqlite.js";
+import { db } from './path/to/sqlite.js';
+
+// Exemplo de consulta
+db.execute('SELECT * FROM users', (err, results) => {
+    if (err) {
+        console.error(err);
+    } else {
+        console.log(results);
+    }
+});
 
 async function Listar(id_user, dt_start, dt_end, id_doctor) {
 

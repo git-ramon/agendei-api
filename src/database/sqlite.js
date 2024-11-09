@@ -6,7 +6,7 @@ dotenv.config();
 
 
 // Configuração de conexão MySQL (utiliza variáveis de ambiente)
-const dbMySQL = mysql.createConnection({
+const db = mysql.createConnection({
     host: process.env.DB_HOST,
     port: process.env.DB_PORT,
     user: process.env.DB_USER,
