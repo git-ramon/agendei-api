@@ -5,10 +5,12 @@ import dotenv from "dotenv";
 dotenv.config();
 
 console.log('Tentando conectar ao MySQL...');
+console.log("MYSQLHOST:", process.env.MYSQLHOST);
+console.log("MYSQLURL:", process.env.MYSQL_URL);
 
 // Configuração de conexão MySQL (utiliza variáveis de ambiente)
 const db = mysql.createConnection({
-    host: process.env.MYSQLHOST,  // Usar MYSQLHOST
+    host: mysql.railway.internal,  // Usar MYSQLHOST
     port: process.env.MYSQLPORT,  // Usar MYSQLPORT
     user: process.env.MYSQLUSER,  // Usar MYSQLUSER
     password: process.env.MYSQL_ROOT_PASSWORD,  // Usar MYSQLROOTPASSWORD
