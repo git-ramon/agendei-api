@@ -28,7 +28,7 @@ db.connect((err) => {
 });
 
 // Função para realizar a consulta, com verificação do estado da conexão
-async function query(queryString) {
+async function runQuery(queryString) {
     if (db.state === 'disconnected') {
         console.log('Reconectando ao MySQL...');
         db.connect();
@@ -59,7 +59,7 @@ function query(command, params = []) {
     });
 }
 
-export { query, db };
+export { query, runQuery, db };
 
 
 
