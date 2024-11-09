@@ -15,7 +15,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 app.use(express.json());
-app.use(cors());
+//app.use(cors());
 app.use(router);
 
 // Use process.env.PORT para Vercel
