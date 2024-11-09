@@ -7,11 +7,11 @@ dotenv.config();
 
 // Configuração de conexão MySQL (utiliza variáveis de ambiente)
 const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
+    host: process.env.MYSQLHOST,  // Usar MYSQLHOST
+    port: process.env.MYSQLPORT,  // Usar MYSQLPORT
+    user: process.env.MYSQLUSER,  // Usar MYSQLUSER
+    password: process.env.MYSQLROOTPASSWORD,  // Usar MYSQLROOTPASSWORD
+    database: process.env.MYSQLDATABASE,  // Usar MYSQLDATABASE
 });
 
 db.connect((err) => {
