@@ -9,6 +9,7 @@ const corsOptions = {
     origin: 'https://agendei-web-mauve.vercel.app',  // Permitir apenas essa origem
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization', '*'],  // Permitir cabeçalhos
+    optionsSuccessStatus: 200
 };
 
 // Aplicar CORS antes de qualquer outra configuração de rota
