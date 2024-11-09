@@ -27,6 +27,24 @@ db.connect((err) => {
     }
 });
 
+// Função para realizar a consulta, com verificação do estado da conexão
+async function query(queryString) {
+    if (db.state === 'disconnected') {
+        console.log('Reconectando ao MySQL...');
+        db.connect();
+    }
+
+    return new Promise((resolve, reject) => {
+        db.execute(queryString, (err, results) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+}
+
 
 // Função para executar consultas
 function query(command, params = []) {
