@@ -22,7 +22,20 @@ db.connect((err) => {
     }
 });
 
-export { db };
+// Função para executar consultas
+function query(command, params = []) {
+    return new Promise((resolve, reject) => {
+        db.execute(command, params, (err, results) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(results);
+            }
+        });
+    });
+}
+
+export { query, db };
 
 
 
