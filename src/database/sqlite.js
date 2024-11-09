@@ -4,14 +4,14 @@ import dotenv from "dotenv";
 dotenv.config();
 
 console.log('Tentando conectar ao MySQL...');
-console.log(`Conectando a ${host}:${port} com usuário ${user}`);
-
 
 const host = process.env.MYSQLHOST || "mysql.railway.internal";
 const port = process.env.MYSQLPORT || 3306;
 const user = process.env.MYSQLUSER || "root";
 const password = process.env.MYSQLROOTPASSWORD || "rootpassword";
 const database = process.env.MYSQLDATABASE || "database";
+
+console.log(`Conectando a ${host}:${port} com usuário ${user}`);
 
 // Criando o pool de conexões
 const pool = mysql.createPool({
