@@ -8,7 +8,7 @@ const app = express();
 const corsOptions = {
     origin: 'https://agendei-web-mauve.vercel.app',  // Permitir apenas essa origem
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization', '*'],  // Permitir cabeçalhos
+    allowedHeaders: ['Content-Type', 'Authorization'],  // Permitir cabeçalhos
     optionsSuccessStatus: 200
 };
 
@@ -17,7 +17,6 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 app.use(router);
-//app.use(cors());
 
 // Use process.env.PORT para Vercel
 const PORT = process.env.PORT || 3001; // Usar 3001 localmente
