@@ -1,18 +1,9 @@
 
-import sqlite3 from "sqlite3";
 import mysql from "mysql2";
 import dotenv from "dotenv";
 
 dotenv.config();
 
-const SQLite = sqlite3.verbose();
-
-// Configuração de conexão SQLite
-const dbSQLite = new SQLite.Database("./src/database/banco.db", SQLite.OPEN_READWRITE, (err) => {
-    if (err) {
-        console.log("Erro ao conectar com o banco SQLite: " + err.message);
-    }
-});
 
 // Configuração de conexão MySQL (utiliza variáveis de ambiente)
 const dbMySQL = mysql.createConnection({
@@ -23,23 +14,21 @@ const dbMySQL = mysql.createConnection({
     database: process.env.DB_NAME,
 });
 
-// Função de consulta adaptada para ambas as conexões
-function query(command, params, method = 'all', useMySQL = true) {
-    const db = useMySQL ? dbMySQL : dbSQLite;
+db.connect((err) => {
+    if (err) {
+        console.error('Erro ao conectar com o MySQL: ', err);
+    } else {
+        console.log('Conectado ao MySQL!');
+    }
+});
 
-    return new Promise((resolve, reject) => {
-        db[method](command, params, (error, result) => {
-            if (error) {
-                reject(error);
-            } else {
-                resolve(result);
-            }
-        });
-    });
-}
+export { db };
 
-// Exportar as conexões e a função de consulta
-export { dbSQLite, dbMySQL, query };
+
+
+
+
+
 
 /*import sqlite3 from "sqlite3";
 
