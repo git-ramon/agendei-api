@@ -11,7 +11,7 @@ const db = mysql.createConnection({
     host: process.env.MYSQLHOST,  // Usar MYSQLHOST
     port: process.env.MYSQLPORT,  // Usar MYSQLPORT
     user: process.env.MYSQLUSER,  // Usar MYSQLUSER
-    password: process.env.MYSQLROOTPASSWORD,  // Usar MYSQLROOTPASSWORD
+    password: process.env.MYSQL_ROOT_PASSWORD,  // Usar MYSQLROOTPASSWORD
     database: process.env.MYSQLDATABASE,  // Usar MYSQLDATABASE
 });
 
