@@ -1,7 +1,7 @@
 import { query, runQuery } from "../database/sqlite.js";
 
 
-runQuery.execute('SELECT * FROM users', (err, results) => {
+runQuery('SELECT * FROM users', (err, results) => {
     if (err) {
         console.error(err);
     } else {
