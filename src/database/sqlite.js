@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+console.log('Tentando conectar ao MySQL...');
 
 // Configuração de conexão MySQL (utiliza variáveis de ambiente)
 const db = mysql.createConnection({
