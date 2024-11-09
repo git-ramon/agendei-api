@@ -1,6 +1,6 @@
 import { query, db } from "../database/sqlite.js";
 
-// Exemplo de consulta
+
 db.execute('SELECT * FROM users', (err, results) => {
     if (err) {
         console.error(err);
