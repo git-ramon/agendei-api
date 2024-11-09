@@ -1,20 +1,22 @@
-
 import mysql from "mysql2";
 import dotenv from "dotenv";
 
 dotenv.config();
 
 console.log('Tentando conectar ao MySQL...');
-console.log("MYSQLHOST:", process.env.MYSQLHOST);
-console.log("MYSQLURL:", process.env.MYSQL_URL);
 
-// Configuração de conexão MySQL (utiliza variáveis de ambiente)
+const host = process.env.MYSQLHOST || "localhost"; // Valor padrão
+const port = process.env.MYSQLPORT || 3306; // Valor padrão
+const user = process.env.MYSQLUSER || "root"; // Valor padrão
+const password = process.env.MYSQLROOTPASSWORD || "rootpassword"; // Valor padrão
+const database = process.env.MYSQLDATABASE || "database"; // Valor padrão
+
 const db = mysql.createConnection({
-    host: mysql.railway.internal,  // Usar MYSQLHOST
-    port: process.env.MYSQLPORT,  // Usar MYSQLPORT
-    user: process.env.MYSQLUSER,  // Usar MYSQLUSER
-    password: process.env.MYSQL_ROOT_PASSWORD,  // Usar MYSQLROOTPASSWORD
-    database: process.env.MYSQLDATABASE,  // Usar MYSQLDATABASE
+    host,
+    port,
+    user,
+    password,
+    database,
 });
 
 db.connect((err) => {
@@ -24,6 +26,7 @@ db.connect((err) => {
         console.log('Conectado ao MySQL!');
     }
 });
+
 
 // Função para executar consultas
 function query(command, params = []) {
