@@ -4,18 +4,8 @@ import router from "./routes.js";
 
 const app = express();
 
-// Configuração do CORS com a origem específica para a sua aplicação web
-const corsOptions = {
-    origin: 'https://agendei-web-mauve.vercel.app',  // Permitir apenas essa origem
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],  // Permitir cabeçalhos
-    optionsSuccessStatus: 200
-};
-
-// Aplicar CORS antes de qualquer outra configuração de rota
-app.use(cors(corsOptions));
-
 app.use(express.json());
+app.use(cors());
 app.use(router);
 
 // Use process.env.PORT para Vercel

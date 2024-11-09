@@ -1,13 +1,4 @@
-import { query, runQuery } from "../database/sqlite.js";
-
-
-runQuery('SELECT * FROM users', (err, results) => {
-    if (err) {
-        console.error(err);
-    } else {
-        console.log(results);
-    }
-});
+import { query } from "../database/sqlite.js";
 
 async function Listar(id_user, dt_start, dt_end, id_doctor) {
 
