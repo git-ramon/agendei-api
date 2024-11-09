@@ -5,11 +5,11 @@ dotenv.config();
 
 console.log('Tentando conectar ao MySQL...');
 
-const host = process.env.MYSQLHOST || "mysql.railway.internal";
+const host = process.env.MYSQLHOST || "agendei_host";
 const port = process.env.MYSQLPORT || 3306;
 const user = process.env.MYSQLUSER || "root";
-const password = process.env.MYSQLROOTPASSWORD || "rootpassword";
-const database = process.env.MYSQLDATABASE || "database";
+const password = process.env.MYSQL_ROOT_PASSWORD || "WUDihiQrSsXFCnnfXvIhqkbvcHciAwur";
+const database = process.env.MYSQLDATABASE || "agendei_db";
 
 console.log(`Conectando a ${host}:${port} com usuário ${user}`);
 
