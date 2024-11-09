@@ -1,4 +1,4 @@
-import { query } from "../database/sqlite.js";
+import { query, db } from "../database/sqlite.js";
 
 // Exemplo de consulta
 db.execute('SELECT * FROM users', (err, results) => {
