@@ -49,7 +49,7 @@ function query(command, params = []) {
     });
 }
 
-export { query, runQuery, pool };
+export { query, runQuery };
 
 
 
